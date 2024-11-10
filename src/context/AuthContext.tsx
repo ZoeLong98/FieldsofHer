@@ -41,6 +41,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const user = result.user;
       console.log("User signed in: ", user);
       router.push("/archive"); // 登录成功后跳转到 profile 页面
+      window.location.reload();
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
         // Use FirebaseError in the type guard
@@ -67,6 +68,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(true);
     await signOut(auth);
     router.push("/");
+    window.location.reload();
     setLoading(false);
   };
 
