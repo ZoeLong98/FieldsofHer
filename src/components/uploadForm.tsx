@@ -2,6 +2,7 @@ import { useState } from "react";
 import addStory from "@/api/addStory";
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const avatars = [
   { value: "avatar1", src: "/avatar1.png", alt: "Avatar 1" },
@@ -10,6 +11,7 @@ const avatars = [
 ];
 
 const FormComponent = () => {
+  const [selectedAvatar, setSelectedAvatar] = useState("");
   const avatar = avatars.find((avatar) => avatar.value === selectedAvatar);
 
   const fields = [
@@ -24,11 +26,7 @@ const FormComponent = () => {
     "Student",
     "Other",
   ];
-  const [selectedAvatar, setSelectedAvatar] = useState("");
-  const handleavatar = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedAvatar(e.target.value);
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+
   const [formData, setFormData] = useState({
     avatar: "",
     name: "",
@@ -36,12 +34,20 @@ const FormComponent = () => {
     description: "",
     birthDate: "",
   });
+
   const { user } = useAuth();
+  const router = useRouter();
+
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >
   ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedAvatar(e.target.value);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -52,6 +58,7 @@ const FormComponent = () => {
       alert("User is not authenticated");
       return;
     }
+
     const completeFormData = {
       slug: formData.name,
       img: formData.avatar, // or any default value
@@ -60,17 +67,16 @@ const FormComponent = () => {
       description: formData.description,
       uploadBY: user.displayName || "Anonymous", // replace with actual user info
     };
+
     const status = await addStory(completeFormData, user);
     if (status === true) {
       alert("Story added successfully");
       console.error("Story added");
+      router.push("/herNearby");
     } else {
       alert("Error adding story");
-
       console.error("Failed to add story");
     }
-    // navigate("/herNearby");
-    // window.location.reload();
   };
 
   return (
@@ -83,7 +89,7 @@ const FormComponent = () => {
         <select
           name="avatar"
           value={selectedAvatar}
-          onChange={handleavatar}
+          onChange={handleAvatarChange}
           className="mt-1 block w-1/2 bg-gray-700 border border-gray-600 text-white rounded-md"
           required
         >
@@ -102,7 +108,7 @@ const FormComponent = () => {
               alt={avatar.alt}
               width={48} // 设置图片宽度（12 * 4 = 48 像素）
               height={48} // 设置图片高度（12 * 4 = 48 像素）
-              className="rounded-full"
+              className="rounded-full mt-3"
             />
           )}
         </div>
@@ -161,7 +167,6 @@ const FormComponent = () => {
       <button
         type="submit"
         className="w-fit  bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
-        onClick={handleSubmit}
       >
         Submit
       </button>

@@ -32,6 +32,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     console.log("Signing in with Google...");
     setLoading(true);
     const provider = new GoogleAuthProvider();
+    // 设置自定义参数，强制显示账号选择界面
+    provider.setCustomParameters({
+      prompt: "select_account",
+    });
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;

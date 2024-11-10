@@ -4,10 +4,17 @@ import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 const AccountImg = () => {
   const { user, signInWithGoogle, signOutUser, loading } = useAuth();
-  const [showPopup, setShowPopup] = useState(false);
+  // const [showPopup, setShowPopup] = useState(false);
 
+  // const handleTogglePopup = () => {
+  //   setShowPopup((prev) => !prev);
+  // };
   const handleTogglePopup = () => {
-    setShowPopup((prev) => !prev);
+    if (user) {
+      signOutUser();
+    } else {
+      signInWithGoogle();
+    }
   };
 
   return (
@@ -20,7 +27,7 @@ const AccountImg = () => {
         className="rounded-full cursor-pointer"
         onClick={handleTogglePopup}
       />
-      {showPopup && (
+      {/* {showPopup && (
         <div className="absolute top-full mt-2 right-0 bg-white shadow-lg rounded-lg p-4">
           {user ? (
             <button onClick={signOutUser} disabled={loading}>
@@ -36,7 +43,7 @@ const AccountImg = () => {
             </button>
           )}
         </div>
-      )}
+      )} */}
     </div>
   );
 };
