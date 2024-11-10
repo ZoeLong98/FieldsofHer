@@ -1,0 +1,5 @@
+#ChatSession.loading {
+  background: url("/Ellipsis@1x-1.4s-200px-200px.gif") center center no-repeat;
+  background-size: 50px 50px;
+  opacity: 0.5;
+}
