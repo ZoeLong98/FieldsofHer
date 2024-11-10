@@ -1,9 +1,8 @@
 "use client";
-import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 const AccountImg = () => {
-  const { user, signInWithGoogle, signOutUser, loading } = useAuth();
+  const { user, signInWithGoogle, signOutUser } = useAuth();
   // const [showPopup, setShowPopup] = useState(false);
 
   // const handleTogglePopup = () => {
