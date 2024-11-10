@@ -15,7 +15,6 @@ interface brief_description_gemini {
 
 const GetPersonButton: React.FC = () => {
   const [person, setPerson] = useState<Person | null>(null);
-  const [des, setNewData] = useState<brief_description_gemini | null>(null);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [personKey, setPersonKey] = useState<number | null>(null);
 
@@ -31,7 +30,6 @@ const GetPersonButton: React.FC = () => {
       const additionalData: brief_description_gemini = {
         briefInfo,
       };
-      setNewData(additionalData);
 
       // 更新人物的简短介绍
       if (additionalData && her) {

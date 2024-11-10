@@ -4,9 +4,10 @@ import React, { useEffect, useState } from "react";
 import FigureDisplay from "@/components/FirgureDisplay_myArchive";
 import getUserArchive from "@/api/getUserArchive";
 import { useAuth } from "@/context/AuthContext";
+import { Person } from "./types";
 
 const MyArchive = () => {
-  const [figures, setFigures] = useState<Record<string, any> | null>(null);
+  const [figures, setFigures] = useState<Record<string, Person> | null>(null);
   const { user } = useAuth();
   useEffect(() => {
     const fetchData = async () => {

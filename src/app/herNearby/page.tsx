@@ -1,15 +1,17 @@
 "use client";
 // HomePage.tsx
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import HerNearby from "@/components/herNearby";
 
 const HomePage = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleButtonClick = () => {
-    navigate("/herNearby/uploadForm");
-    window.location.reload();
+    router.push("/herNearby/uploadForm");
+    // 如果你需要刷新页面，可以使用 router.reload() 或 window.location.reload()
+    // router.reload();
+    // window.location.reload();
   };
 
   return (

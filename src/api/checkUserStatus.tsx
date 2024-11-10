@@ -1,4 +1,3 @@
-import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "./firebase.config"; // Adjust the path if needed
 import { ref, onValue, update } from "firebase/database";
 

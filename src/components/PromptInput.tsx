@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import Image from "next/image";
 interface PromptInputProps {
   placeholder: string;
   sendPrompt: (input: string) => void;
@@ -38,9 +38,11 @@ const PromptInput: React.FC<PromptInputProps> = ({
         className=" text-white font-bold py-2 px-4 rounded-full"
         onClick={handleSubmit}
       >
-        <img
+        <Image
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/b802f4fc5ef5fb2ec17d27fe68388944ce26434ac4b2289f646dc78a937613e6?placeholderIfAbsent=true&apiKey=8b37e39a71bd4bd3b190d9d326dd5d75"
           alt=""
+          width={32} // 设置图片宽度
+          height={35} // 设置图片高度
           className="object-contain shrink-0 min-w-8 rounded-full aspect-[0.92]"
         />
       </button>

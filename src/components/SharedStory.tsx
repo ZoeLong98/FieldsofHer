@@ -1,11 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { PersonNearby } from "./types";
-import checkUserStatus from "@/api/checkUserStatus";
-import signInWithGoogle from "@/api/signin";
-import addBookMark from "@/api/addUserBookmark";
-import deleteBookMark from "@/api/deleteUserBookMark";
-
+import Image from "next/image";
 const FigureDisplay: React.FC<{
   person: PersonNearby;
 }> = ({ person }) => {
@@ -27,7 +23,12 @@ const FigureDisplay: React.FC<{
             )}
           </div>
           <div className="w-12 ml-auto">
-            <img src={"/" + person.img + ".png"} alt="" />
+            <Image
+              src={"/" + person.img + ".png"}
+              alt="Person Image"
+              width={500} // 设置图片宽度，根据实际情况调整
+              height={500} // 设置图片高度，根据实际情况调整
+            />
           </div>
         </div>
         <div>

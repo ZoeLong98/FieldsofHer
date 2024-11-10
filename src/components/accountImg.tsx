@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
-
+import Image from "next/image";
 const AccountImg = () => {
   const { user, signInWithGoogle, signOutUser, loading } = useAuth();
   const [showPopup, setShowPopup] = useState(false);
@@ -12,10 +12,12 @@ const AccountImg = () => {
 
   return (
     <div className="relative w-full h-full">
-      <img
+      <Image
         src={user && user.photoURL ? user.photoURL : "/user_white.png"}
         alt="User Avatar"
-        className="w-10 h-10 rounded-full cursor-pointer"
+        width={40} // 设置图片宽度
+        height={40} // 设置图片高度
+        className="rounded-full cursor-pointer"
         onClick={handleTogglePopup}
       />
       {showPopup && (

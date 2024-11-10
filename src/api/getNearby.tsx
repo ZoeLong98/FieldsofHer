@@ -1,4 +1,4 @@
-import { ref, get, onValue } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 import { db } from "./firebase.config";
 import { PersonNearby } from "@/components/types";
 const getNearby = async (): Promise<Record<string, PersonNearby>> => {

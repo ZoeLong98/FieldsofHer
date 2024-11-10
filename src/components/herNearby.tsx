@@ -3,9 +3,12 @@
 import React, { useEffect, useState } from "react";
 import FigureDisplay from "./SharedStory";
 import getNearby from "@/api/getNearby";
+import { PersonNearby } from "./types";
 
 const HerNearby = () => {
-  const [figures, setFigures] = useState<Record<string, any> | null>(null);
+  const [figures, setFigures] = useState<Record<string, PersonNearby> | null>(
+    null
+  );
   useEffect(() => {
     const fetchData = async () => {
       const data = await getNearby();

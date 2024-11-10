@@ -15,7 +15,6 @@ const FigureDisplay: React.FC<{
   console.log("I am in the figureDisplay");
   console.log(herkey);
   const [isBookmarked, setIsBookmarked] = useState(ismarked);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // 假设你有一个方法来检查用户是否已登录
 
   const handleBookmarkClick = async () => {
     const isLoggedIn = await checkUserStatus();

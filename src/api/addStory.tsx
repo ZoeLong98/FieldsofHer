@@ -1,8 +1,9 @@
 import { db } from "@/api/firebase.config";
 import { PersonNearby } from "@/components/types";
+import { User } from "firebase/auth";
 import { ref, get, update, push, set } from "firebase/database";
 
-const addStory = async (person: PersonNearby, user: any): Promise<boolean> => {
+const addStory = async (person: PersonNearby, user: User): Promise<boolean> => {
   try {
     if (!user.uid) {
       console.log("User is not signed in");

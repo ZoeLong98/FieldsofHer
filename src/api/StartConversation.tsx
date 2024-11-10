@@ -1,6 +1,11 @@
+"use client";
+import { useRouter } from "next/router";
+
 const useStartConversation = (name: string) => {
+  const router = useRouter();
+
   if (name) {
-    window.location.href = `/conversation?name=${decodeURIComponent(name)}`;
+    router.push(`/conversation?name=${encodeURIComponent(name)}`);
   }
 };
 

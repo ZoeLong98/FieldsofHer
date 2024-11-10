@@ -1,10 +1,11 @@
-import { ref, get, onValue } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 import { db } from "./firebase.config";
 import { Person } from "@/components/types";
+import { User } from "firebase/auth";
 const getUserArchive = async ({
   user,
 }: {
-  user: any;
+  user: User;
 }): Promise<Record<string, Person>> => {
   return new Promise((resolve) => {
     if (user) {

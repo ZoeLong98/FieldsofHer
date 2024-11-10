@@ -19,12 +19,11 @@ const ConverDetail = () => {
     const savedMessages = localStorage.getItem("chatMessages" + uname);
     return savedMessages ? JSON.parse(savedMessages) : [];
   });
-  const [name, setName] = useState<string | null>(null);
+
   const firstMessageRef = useRef<HTMLDivElement>(null);
   const chatSessionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setName(uname);
     console.log(uname);
     const fetchData = async () => {
       // 如果 localStorage 中已经有 chatMessages，则跳出 useEffect

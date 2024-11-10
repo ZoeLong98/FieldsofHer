@@ -1,6 +1,8 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { app } from "@/api/firebase.config";
+import { FirebaseError } from "firebase/app"; // Import FirebaseError
+
 import {
   getAuth,
   onAuthStateChanged,
@@ -9,7 +11,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
 interface AuthContextType {
   user: User | null;
@@ -32,23 +34,26 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const provider = new GoogleAuthProvider();
     try {
       const result = await signInWithPopup(auth, provider);
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential?.accessToken;
       const user = result.user;
       console.log("User signed in: ", user);
       router.push("/archive"); // 登录成功后跳转到 profile 页面
-    } catch (error: any) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      const email = error.customData?.email;
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      console.error(
-        "Error signing in with Google: ",
-        errorCode,
-        errorMessage,
-        email,
-        credential
-      );
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        // Use FirebaseError in the type guard
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.customData?.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.error(
+          "Error signing in with Google: ",
+          errorCode,
+          errorMessage,
+          email,
+          credential
+        );
+      } else {
+        console.error("Unexpected error signing in with Google:", error);
+      }
     } finally {
       setLoading(false);
     }

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import addStory from "@/api/addStory";
-import { tr } from "date-fns/locale";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
+import Image from "next/image";
+
 const avatars = [
   { value: "avatar1", src: "/avatar1.png", alt: "Avatar 1" },
   { value: "avatar2", src: "/avatar2.png", alt: "Avatar 2" },
@@ -10,7 +10,8 @@ const avatars = [
 ];
 
 const FormComponent = () => {
-  const navigate = useNavigate();
+  const avatar = avatars.find((avatar) => avatar.value === selectedAvatar);
+
   const fields = [
     "Arts",
     "Business & Law",
@@ -62,9 +63,11 @@ const FormComponent = () => {
     const status = await addStory(completeFormData, user);
     if (status === true) {
       alert("Story added successfully");
-      navigator;
+      console.error("Story added");
     } else {
       alert("Error adding story");
+
+      console.error("Failed to add story");
     }
     // navigate("/herNearby");
     // window.location.reload();
@@ -92,19 +95,17 @@ const FormComponent = () => {
           ))}
         </select>
 
-        {selectedAvatar && (
-          <div className="selected-avatar mt-4">
-            <img
-              src={
-                avatars.find((avatar) => avatar.value === selectedAvatar)?.src
-              }
-              alt={
-                avatars.find((avatar) => avatar.value === selectedAvatar)?.alt
-              }
-              className="w-12 h-12 rounded-full"
+        <div>
+          {avatar && (
+            <Image
+              src={avatar.src}
+              alt={avatar.alt}
+              width={48} // 设置图片宽度（12 * 4 = 48 像素）
+              height={48} // 设置图片高度（12 * 4 = 48 像素）
+              className="rounded-full"
             />
-          </div>
-        )}
+          )}
+        </div>
       </label>
 
       <label className="block mb-4">

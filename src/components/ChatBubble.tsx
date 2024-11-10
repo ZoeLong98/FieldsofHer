@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth } from "@/context/AuthContext";
+import Image from "next/image";
 
 interface ChatBubbleProps {
   message: string;
@@ -14,10 +15,12 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ message }) => {
           {message}
         </div>
       </div>
-      <img
+      <Image
         src={user && user.photoURL ? user.photoURL : "/user_white.png"}
         alt="User Avatar"
-        className="w-10 h-10 rounded-full cursor-pointer mr-3"
+        width={40} // 设置图片宽度
+        height={40} // 设置图片高度
+        className="rounded-full cursor-pointer mr-3"
       />
     </div>
   );

@@ -1,7 +1,7 @@
 import { db, auth } from "@/api/firebase.config";
 import { Person } from "@/components/types";
 import { onAuthStateChanged } from "firebase/auth";
-import { ref, get, update, push, set } from "firebase/database";
+import { ref, get, update, set } from "firebase/database";
 
 const addBookMark = async (
   person: Person,

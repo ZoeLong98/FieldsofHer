@@ -1,5 +1,4 @@
 import { db, auth } from "@/api/firebase.config";
-import { Person } from "@/components/types";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, remove } from "firebase/database";
 

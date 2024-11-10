@@ -1,7 +1,6 @@
 import { db } from "./firebase.config";
-import { onValue, ref, get, child } from "firebase/database";
+import { ref, get } from "firebase/database";
 import { Person } from "@/components/types";
-import { generateStory } from "./gemini.mjs";
 
 const getPantheon = async (): Promise<[Person | null, number]> => {
   try {
