@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 import HerNearby from "@/components/herNearby";
 
 const HomePage = () => {
+  const router = useRouter();
   const handleButtonClick = () => {
-    const router = useRouter();
     router.push("/herNearby/uploadForm");
     // 如果你需要刷新页面，可以使用 router.reload() 或 window.location.reload()
     // router.reload();

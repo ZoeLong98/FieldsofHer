@@ -1,15 +1,13 @@
 "use client";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import PromptInput from "@/components/PromptInput";
 import React, { useEffect, useState, useRef } from "react";
-import { useLocation } from "react-router-dom";
 import ChatBubble from "@/components/ChatBubble";
 import { generateStory } from "@/api/gemini";
 import ResponseSection from "@/components/GeminiResponse";
 import "@/styles/global.css";
 
 const ConverDetail = () => {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const queryParams = new URLSearchParams(searchParams.toString());
 

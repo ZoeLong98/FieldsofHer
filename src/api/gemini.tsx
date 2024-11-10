@@ -1,4 +1,3 @@
-import fetch from "isomorphic-fetch";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 // const { GoogleGenerativeAI } = require("@google/generative-ai");
 
