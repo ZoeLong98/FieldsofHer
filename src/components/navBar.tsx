@@ -8,17 +8,17 @@ const NavBar: React.FC = () => {
       <ul className="flex justify-center flex-row items-center">
         <li className="m-2">
           <Link href="/" passHref>
-            <a className="text-white text-lg">Home</a>
+            <div className="text-white text-lg">Home</div>
           </Link>
         </li>
         <li className="m-2">
           <Link href="/herNearby" passHref>
-            <a className="text-white text-lg">Her Nearby</a>
+            <div className="text-white text-lg">Her Nearby</div>
           </Link>
         </li>
         <li className="m-2">
           <Link href="/archive" passHref>
-            <a className="text-white text-lg">Archive</a>
+            <div className="text-white text-lg">Archive</div>
           </Link>
         </li>
         <li className="h-10">

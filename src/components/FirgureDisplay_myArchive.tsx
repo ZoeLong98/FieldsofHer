@@ -1,11 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Person } from "./types";
 import checkUserStatus from "@/api/checkUserStatus";
 import signInWithGoogle from "@/api/signin";
 import addBookMark from "@/api/addUserBookmark";
 import deleteBookMark from "@/api/deleteUserBookMark";
-import StartConversation from "@/api/StartConversation";
+import { useRouter } from "next/navigation";
+
+const useStartConversation = (name: string) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (name) {
+      router.push(`/conversation?name=${encodeURIComponent(name)}`);
+    }
+  }, [name, router]);
+};
 
 const FigureDisplay: React.FC<{
   person: Person;
@@ -17,6 +27,9 @@ const FigureDisplay: React.FC<{
   console.log(herkey);
   const [isBookmarked, setIsBookmarked] = useState(ismarked);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [conversationName, setConversationName] = useState<string | null>(null);
+
+  useStartConversation(conversationName || "");
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -53,6 +66,10 @@ const FigureDisplay: React.FC<{
       alert("You are not logged in. Please log in to bookmark.");
       signInWithGoogle();
     }
+  };
+
+  const handleLearnMoreClick = () => {
+    setConversationName(person.name);
   };
 
   return (
@@ -108,7 +125,7 @@ const FigureDisplay: React.FC<{
           </p>
         </div>
         <button
-          onClick={() => StartConversation(decodeURIComponent(person.name))}
+          onClick={handleLearnMoreClick}
           className="text-sm w-fit rounded-md p-2 bg-yellow-500 mt-7 hover:bg-yellow-600"
         >
           Learn More

@@ -23,7 +23,7 @@ const ResponseSection: React.FC<ResponseSectionProps> = ({ content }) => {
         <div className="flex gap-2 items-center self-stretch my-auto">
           <div className="flex gap-2.5 justify-center items-center self-stretch px-1.5 my-auto w-8 h-8 bg-white rounded-lg min-h-[32px]">
             <Image
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/b47c3b9d50f4cb85a108e3f817cc9a2bcd3fd1f9726dbf533cce0c49ceab3b20?placeholderIfAbsent=true&apiKey=8b37e39a71bd4bd3b190d9d326dd5d75"
+              src="/avatar1.png"
               alt=""
               width={400} // 设置图片宽度
               height={450} // 设置图片高度
@@ -43,9 +43,9 @@ const ResponseSection: React.FC<ResponseSectionProps> = ({ content }) => {
         <Image
           src="/duplicate.png"
           alt=""
-          width={66} // 设置图片宽度
+          width={20} // 设置图片宽度
           height={21} // 设置图片高度（根据 aspect ratio 3.25 计算得出）
-          className="object-contain mt-7 rounded hover:cursor-pointer"
+          className="object-contain ml-3 mt-7 rounded hover:cursor-pointer"
           onClick={handleCopy}
         />
       </div>

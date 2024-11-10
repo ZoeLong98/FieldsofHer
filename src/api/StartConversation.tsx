@@ -1,12 +1,15 @@
 "use client";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const useStartConversation = (name: string) => {
   const router = useRouter();
 
-  if (name) {
-    router.push(`/conversation?name=${encodeURIComponent(name)}`);
-  }
+  useEffect(() => {
+    if (name) {
+      router.push(`/conversation?name=${encodeURIComponent(name)}`);
+    }
+  }, [name, router]);
 };
 
 export default useStartConversation;

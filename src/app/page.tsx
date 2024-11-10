@@ -6,7 +6,7 @@ export default function Home() {
     <section className="flex-grow px-4 py-4 text-white rounded-lg">
       <div className="flex flex-col items-center justify-center">
         <Title />
-        <p className="mt-24 w-4/5">
+        <div className="mt-24 w-4/5 max-w-4xl">
           <h1 className="text-2xl font-bold mb-4">
             Welcome!{" "}
             <span className="text-lg text-gray-300 mb-4">
@@ -35,7 +35,7 @@ export default function Home() {
               high!
             </li>
           </ul>
-        </p>
+        </div>
         <GetPersonButton />
       </div>
     </section>

@@ -2,7 +2,7 @@
 import getPantheon from "@/api/pantheon";
 import React, { useState } from "react";
 import { Person } from "@/components/types";
-import { generateStory } from "@/api/gemini.mjs";
+import { generateStory } from "@/api/gemini";
 import FigureDisplay from "@/components/figureDisplay";
 import { db, auth } from "@/api/firebase.config";
 import { onAuthStateChanged } from "firebase/auth";

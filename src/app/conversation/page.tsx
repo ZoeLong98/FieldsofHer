@@ -1,16 +1,17 @@
 "use client";
+import { useRouter, useSearchParams } from "next/navigation";
 import PromptInput from "@/components/PromptInput";
 import React, { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import ChatBubble from "@/components/ChatBubble";
-import { generateStory } from "@/api/gemini.mjs";
+import { generateStory } from "@/api/gemini";
 import ResponseSection from "@/components/GeminiResponse";
 import "@/styles/global.css";
 
 const ConverDetail = () => {
-  console.log("I am in the ArchivePage");
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const queryParams = new URLSearchParams(searchParams.toString());
 
   // 使用 decodeURIComponent 解码 URL 参数
   const uname = decodeURIComponent(queryParams.get("name") || "");
@@ -104,12 +105,23 @@ const ConverDetail = () => {
             className="flex flex-col justify-start w-5/6 mx-auto mt-7 mb-3 flex-grow overflow-y-auto"
             style={{ maxHeight: "80vh" }}
           >
-            {chatMessages.map((msg, index) => (
-              <div key={index} ref={index === 0 ? firstMessageRef : null}>
-                <ChatBubble message={msg[0]} />
-                <ResponseSection content={msg[1]} />
-              </div>
-            ))}
+            {chatMessages.map((msg, index) => {
+              // 检查当前消息和前一条消息是否相同
+              const isDuplicate =
+                index > 0 && chatMessages[index - 1][0] === msg[0];
+
+              // 如果是重复的消息，则不渲染
+              if (isDuplicate) {
+                return null;
+              }
+
+              return (
+                <div key={index} ref={index === 0 ? firstMessageRef : null}>
+                  <ChatBubble message={msg[0]} />
+                  <ResponseSection content={msg[1]} />
+                </div>
+              );
+            })}
           </div>
 
           <div className="flex justify-center mx-auto p-4 w-full">
