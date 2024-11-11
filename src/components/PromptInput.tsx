@@ -39,7 +39,7 @@ const PromptInput: React.FC<PromptInputProps> = ({
         onClick={handleSubmit}
       >
         <Image
-          src="/next.svg"
+          src="/send.png"
           alt=""
           width={32} // 设置图片宽度
           height={35} // 设置图片高度

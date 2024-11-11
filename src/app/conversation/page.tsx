@@ -90,7 +90,7 @@ const ConverDetail = () => {
   return (
     <div className="flex justify-center py-7 h-screen ">
       <div className="w-4/5 max-w-5xl h-full">
-        <div className="flex relative flex-col h-full w-full border border-white border-solid rounded-3xl">
+        <div className="flex relative flex-col h-full w-full">
           <button
             onClick={clearLocalStorage}
             className="absolute top-0 left-0 m-4 px-1 py-0 bg-red-500 text-white rounded"

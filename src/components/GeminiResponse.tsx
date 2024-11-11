@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 interface ResponseSectionProps {
   content: string;
 }
@@ -23,7 +24,7 @@ const ResponseSection: React.FC<ResponseSectionProps> = ({ content }) => {
         <div className="flex gap-2 items-center self-stretch my-auto">
           <div className="flex gap-2.5 justify-center items-center self-stretch px-1.5 my-auto w-8 h-8 bg-white rounded-lg min-h-[32px]">
             <Image
-              src="/avatar1.png"
+              src="/gemini.png"
               alt=""
               width={400} // 设置图片宽度
               height={450} // 设置图片高度
@@ -34,12 +35,11 @@ const ResponseSection: React.FC<ResponseSectionProps> = ({ content }) => {
             Response
           </div>
         </div>
-        {/* <time className="self-stretch my-auto text-xs leading-none text-zinc-400">
-          {currentTime}
-        </time> */}
       </div>
       <div className="flex overflow-hidden flex-col py-5 pr-9 pl-2.5 mt-4 w-full text-sm rounded-2xl border border-solid bg-white bg-opacity-10 border-slate-400 border-opacity-20 text-neutral-100 max-md:pr-5 max-md:max-w-full">
-        <div className="ml-4 max-md:max-w-full">{content}</div>
+        <div className="ml-4 max-md:max-w-full leading-relaxed">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+        </div>
         <Image
           src="/duplicate.png"
           alt=""
