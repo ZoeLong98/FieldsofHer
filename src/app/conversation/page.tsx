@@ -84,7 +84,7 @@ const ConverDetail = () => {
 
   const clearLocalStorage = () => {
     localStorage.clear();
-    window.location.reload();
+    window.location.href = "/archive";
   };
 
   return (

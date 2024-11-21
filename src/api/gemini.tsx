@@ -36,6 +36,7 @@ export async function generateStory(prompt: string): Promise<string> {
   return new Promise((resolve, reject) => {
     onAuthStateChanged(auth, async (user) => {
       if (!user) {
+        alert("Please sign in to use this feature.");
         reject(new Error("User is not authenticated"));
         return;
       }
@@ -45,6 +46,7 @@ export async function generateStory(prompt: string): Promise<string> {
       const usageCount = await getUserUsageCount(userId, today);
 
       if (usageCount >= 10) {
+        alert("You have reached the daily limit of 10 requests.");
         reject(new Error("You have reached the daily limit of 10 requests."));
         return;
       }

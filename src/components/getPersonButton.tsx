@@ -9,7 +9,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import { ref, get } from "firebase/database";
 
 interface brief_description_gemini {
-  // 根据新的API返回的数据结构定义字段
   briefInfo: string;
 }
 
@@ -17,8 +16,10 @@ const GetPersonButton: React.FC = () => {
   const [person, setPerson] = useState<Person | null>(null);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [personKey, setPersonKey] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(false); // 新增的加载状态
 
   const handleButtonClick = async () => {
+    setIsLoading(true); // 开始加载
     const [her, herKey] = await getPantheon();
     setPersonKey(herKey);
     if (her) {
@@ -59,6 +60,7 @@ const GetPersonButton: React.FC = () => {
         }
       });
     }
+    setIsLoading(false); // 结束加载
   };
 
   return (
@@ -70,12 +72,16 @@ const GetPersonButton: React.FC = () => {
         Discover Her Story
       </button>
       <div>
-        {person && (
-          <FigureDisplay
-            person={person}
-            ismarked={isBookmarked}
-            herkey={personKey}
-          />
+        {isLoading ? (
+          <div>Loading...</div> // 显示加载中的指示器
+        ) : (
+          person && (
+            <FigureDisplay
+              person={person}
+              ismarked={isBookmarked}
+              herkey={personKey}
+            />
+          )
         )}
       </div>
     </div>
