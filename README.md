@@ -5,5 +5,9 @@
 [Try it out](https://fieldsof-her.vercel.app/)
 
 ## Build with
-firebase gemini next.js pantheon.world tailwind typescript
+### firebase 
+### gemini
+### next.js 
+### tailwind 
+### typescript
 
